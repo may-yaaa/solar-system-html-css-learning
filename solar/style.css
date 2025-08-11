@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #111;
+    padding: 20px;
+}
+
+.solar-system {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 15px;
+}
+
+.sun.planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center; /* ensure scaling is centered */
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.sun.planet:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.planet {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Planets Colors */
+.sun { background: radial-gradient(circle, #ffcc00, #ff6600); }
+.mercury { background: radial-gradient(circle, #b0b0b0, #8a8a8a); }
+.venus { background: radial-gradient(circle, #ffdd99, #cc9900); }
+.earth { background: radial-gradient(circle, #3399ff, #003366); }
+.mars { background: radial-gradient(circle, #ff9966, #cc3300); }
+.jupiter { background: radial-gradient(circle, #ffcc99, #996633); }
+.saturn { background: radial-gradient(circle, #ffcc66, #cc9900); }
+.uranus { background: radial-gradient(circle, #99ffff, #009999); }
+.neptune { background: radial-gradient(circle, #6666ff, #000066); }
+
+footer {
+    background-color: #111;
+    padding: 10px;
+}
