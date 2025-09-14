@@ -6,227 +6,82 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Solar System Simulator — Click a planet!</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        :root {
-            --bg: #020617;
-            --sun-size: 120px;
-            --orbit-gap: 70px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
-
-        body {
-            height: 100vh;
-            background: var(--bg);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: sans-serif;
-            overflow: hidden
-        }
-
-        .stage {
-            position: relative;
-            width: 900px;
-            height: 700px
-        }
-
-        .sun {
-            position: absolute;
-            width: var(--sun-size);
-            height: var(--sun-size);
-            border-radius: 50%;
-            background: radial-gradient(circle, #fff1b8, #ff6b00);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2
-        }
-
-        .orbit {
-            position: absolute;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .planet-wrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            animation: spin linear infinite;
-            transform-origin: center center;
-        }
-
-        .planet {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translate(50%, -50%);
-            border-radius: 50%;
-            cursor: pointer;
-            pointer-events: auto;
-        }
-
-        .planet:hover {
-            transform: translate(50%, -50%) scale(1.2)
-        }
-
-        .mercury {
-            width: 14px;
-            height: 14px;
-            background: #b0b0b0
-        }
-
-        .venus {
-            width: 20px;
-            height: 20px;
-            background: #f3c88a
-        }
-
-        .earth {
-            width: 22px;
-            height: 22px;
-            background: linear-gradient(135deg, #2b7bff, #4bd1a8)
-        }
-
-        .mars {
-            width: 16px;
-            height: 16px;
-            background: #d95c3a
-        }
-
-        .jupiter {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(#e3b27a, #a86a45)
-        }
-
-        .saturn {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(#e8d2a6, #c39a5f)
-        }
-
-        .saturn::before {
-            content: '';
-            position: absolute;
-            width: 70px;
-            height: 8px;
-            background: rgba(230, 200, 150, 0.6);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%)
-        }
-
-        .uranus {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(#9fe3e3, #6cc4d6)
-        }
-
-        .neptune {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(#4b6dff, #2b4fff)
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg)
-            }
-
-            to {
-                transform: rotate(360deg)
-            }
-        }
-
-        .info {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 6px;
-            width: 240px
-        }
-
-        .info h3 {
-            margin-bottom: 6px;
-            font-size: 16px
-        }
-
-        .info p {
-            font-size: 14px;
-            line-height: 1.3
-        }
-    </style>
 </head>
 
 <body>
     <div class="stage">
-        <div class="sun planet" data-planet="Sun"></div>
+        <div class="sun" data-planet="Sun"></div>
+
         <div class="orbit" style="width:160px;height:160px">
             <div class="planet-wrap" style="animation-duration:12s">
                 <div class="planet mercury" data-planet="Mercury"></div>
             </div>
         </div>
+
         <div class="orbit" style="width:240px;height:240px">
             <div class="planet-wrap" style="animation-duration:20s">
                 <div class="planet venus" data-planet="Venus"></div>
             </div>
         </div>
+
         <div class="orbit" style="width:320px;height:320px">
             <div class="planet-wrap" style="animation-duration:28s">
                 <div class="planet earth" data-planet="Earth"></div>
             </div>
         </div>
+
         <div class="orbit" style="width:390px;height:390px">
             <div class="planet-wrap" style="animation-duration:36s">
                 <div class="planet mars" data-planet="Mars"></div>
             </div>
         </div>
+
         <div class="orbit" style="width:520px;height:520px">
             <div class="planet-wrap" style="animation-duration:80s">
                 <div class="planet jupiter" data-planet="Jupiter"></div>
             </div>
         </div>
+
         <div class="orbit" style="width:620px;height:620px">
             <div class="planet-wrap" style="animation-duration:120s">
                 <div class="planet saturn" data-planet="Saturn"></div>
             </div>
         </div>
+
         <div class="orbit" style="width:720px;height:720px">
             <div class="planet-wrap" style="animation-duration:180s">
                 <div class="planet uranus" data-planet="Uranus"></div>
             </div>
         </div>
+
         <div class="orbit" style="width:820px;height:820px">
             <div class="planet-wrap" style="animation-duration:240s">
                 <div class="planet neptune" data-planet="Neptune"></div>
             </div>
         </div>
+
         <div class="info" id="info">
             <h3 id="infoTitle">Click a planet</h3>
             <p id="infoText">You'll see a fun fact here.</p>
         </div>
     </div>
+
     <script>
-        const facts = { Sun: 'The Sun is a star at the center of our solar system, providing light and heat to all planets.',
-Mercury: 'Smallest planet, closest to the Sun.', Venus: 'Hottest planet with thick atmosphere.', Earth: 'Our home planet, 71% water.', Mars: 'Known as the Red Planet.', Jupiter: 'Largest planet, has Great Red Spot.', Saturn: 'Has iconic rings.', Uranus: 'Rotates on its side.', Neptune: 'Farthest planet, strong winds.' };
+        const facts = {
+            Sun: 'The Sun is a star at the center of our solar system, providing light and heat to all planets.',
+            Mercury: 'Smallest planet, closest to the Sun.',
+            Venus: 'Hottest planet with thick atmosphere.',
+            Earth: 'Our home planet, 71% water.',
+            Mars: 'Known as the Red Planet.',
+            Jupiter: 'Largest planet, has Great Red Spot.',
+            Saturn: 'Has iconic rings.',
+            Uranus: 'Rotates on its side.',
+            Neptune: 'Farthest planet, strong winds.'
+        };
+
         const infoTitle = document.getElementById('infoTitle');
         const infoText = document.getElementById('infoText');
+
         document.querySelectorAll('.planet').forEach(p => {
             p.addEventListener('click', () => {
                 const name = p.dataset.planet;
