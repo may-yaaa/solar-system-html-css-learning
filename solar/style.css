@@ -1,63 +1,176 @@
+:root {
+  --bg: #020617;
+  --sun-size: 120px;
+  --orbit-gap: 70px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: white;
-    margin: 0;
-    text-align: center;
+  height: 100vh;
+  background: var(--bg);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  text-align: center;
 }
 
-header {
-    background-color: #111;
-    padding: 20px;
+.stage {
+  position: relative;
+  width: 900px;
+  height: 700px;
 }
 
-.solar-system {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 20px;
-    gap: 15px;
-}
-
-.sun.planet {
+/* ดวงอาทิตย์ */
+.sun {
   position: absolute;
+  width: var(--sun-size);
+  height: var(--sun-size);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff1b8, #ff6b00);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transform-origin: center center; /* ensure scaling is centered */
+  z-index: 2;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-.sun.planet:hover {
+.sun:hover {
   transform: translate(-50%, -50%) scale(1.2);
 }
 
-.planet {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
+
+.sun:hover {
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
-/* Planets Colors */
-.sun { background: radial-gradient(circle, #ffcc00, #ff6600); }
-.mercury { background: radial-gradient(circle, #b0b0b0, #8a8a8a); }
-.venus { background: radial-gradient(circle, #ffdd99, #cc9900); }
-.earth { background: radial-gradient(circle, #3399ff, #003366); }
-.mars { background: radial-gradient(circle, #ff9966, #cc3300); }
-.jupiter { background: radial-gradient(circle, #ffcc99, #996633); }
-.saturn { background: radial-gradient(circle, #ffcc66, #cc9900); }
-.uranus { background: radial-gradient(circle, #99ffff, #009999); }
-.neptune { background: radial-gradient(circle, #6666ff, #000066); }
+/* วงโคจร */
+.orbit {
+  position: absolute;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
 
-footer {
-    background-color: #111;
-    padding: 10px;
+.planet-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: spin linear infinite;
+  transform-origin: center center;
+}
+
+.planet {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.planet:hover {
+  transform: translate(50%, -50%) scale(1.2);
+}
+
+/* ขนาด + สีดาว */
+.mercury {
+  width: 14px;
+  height: 14px;
+  background: #b0b0b0;
+}
+
+.venus {
+  width: 20px;
+  height: 20px;
+  background: #f3c88a;
+}
+
+.earth {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #2b7bff, #4bd1a8);
+}
+
+.mars {
+  width: 16px;
+  height: 16px;
+  background: #d95c3a;
+}
+
+.jupiter {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(#e3b27a, #a86a45);
+}
+
+.saturn {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(#e8d2a6, #c39a5f);
+}
+
+.saturn::before {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 8px;
+  background: rgba(230, 200, 150, 0.6);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.uranus {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(#9fe3e3, #6cc4d6);
+}
+
+.neptune {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(#4b6dff, #2b4fff);
+}
+
+/* Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Info box */
+.info {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 6px;
+  width: 240px;
+}
+
+.info h3 {
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.info p {
+  font-size: 14px;
+  line-height: 1.3;
 }
